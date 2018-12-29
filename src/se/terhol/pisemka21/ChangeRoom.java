@@ -25,8 +25,7 @@ public class ChangeRoom {
             lockers[lockerId].lock(keys[keyId]);
             return lockers[lockerId].getLockedBy() == keys[keyId];
         } catch (LockerException le) {
-        } catch (Throwable t) {
-
+            System.err.println(le.getMessage());
         }
 
         return false;
@@ -37,8 +36,7 @@ public class ChangeRoom {
             lockers[lockerId].unlock(keys[keyId]);
             return !lockers[lockerId].isLocked();
         } catch (LockerException le) {
-        } catch (Throwable t) {
-
+            System.err.println(le.getMessage());
         }
 
         return false;
