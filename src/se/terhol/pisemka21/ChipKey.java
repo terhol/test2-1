@@ -2,11 +2,10 @@ package se.terhol.pisemka21;
 
 /**
  * Chip key.
- * 
+ *
  * @author Tomas Pitner
  */
 public class ChipKey {
-
     private ChipLocker lockerLocked = null;
 
     /**
@@ -18,7 +17,7 @@ public class ChipKey {
 
     /**
      * Locks the locker, i.e. associates the locker with the key.
-     * 
+     *
      * @param lockerLocked locker to be associated with this key
      */
     void setLockerLocked(ChipLocker lockerLocked) {

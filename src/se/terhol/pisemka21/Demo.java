@@ -10,13 +10,6 @@ public class Demo {
     public static void main(String[] args) {
         ChangeRoom room = new ChangeRoom(10);
 
-        //ChipKey key9 = room.getKey(9);
-        //ChipKey key5 = room.getKey(5);
-
-        //ChipLocker locker0 = room.getLocker(0);
-        //ChipLocker locker1 = room.getLocker(1);
-        //ChipLocker locker2 = room.getLocker(2);
-
         boolean success = true;
 
         // test locking
@@ -31,18 +24,6 @@ public class Demo {
         success &= tryToUnlock(room, 9, 0);
         success &= !tryToUnlock(room, 9, 1);
         success &= tryToUnlock(room, 5, 1);
-
-        // all keys now free
-        //success &= room.getKey(5).getLockerLocked() == null;
-        //success &= room.getKey(9).getLockerLocked() == null;
-
-        // all lockers now open
-        //success &= !room.getLocker(0).isLocked();
-        //success &= !room.getLocker(1).isLocked();
-        //success &= !room.getLocker(2).isLocked();
-
-        // null keys are not working
-        //success &= !tryToLock(null, locker0);
 
         System.out.println("Tests: " + (success ? "OK" : "ERROR"));
     }
