@@ -1,28 +1,21 @@
 # Test 2-1
 Second test version 1 from subject PB162 on [FI MUNI](https://www.fi.muni.cz/)
 
-## Description (Czech language only)
+## Description
+Do not change interface or already defined classes, if the task doesn’t require it explicitly! You do not have to document methods by JavaDoc comments. Use private attributes only.
 
-Rozhraní ani třídu `Demo` neměňte, pokud to přímo nevyžaduje zadání!
-Metody NEMUSÍTE dokumentovat pomocí JavaDoc komentářů. Používejte
-zásadně privátní atributy.
+This task simulates locking the lockers in a changing room (for example in a swimming pool) by electronic locks and keys. The following must be applied:
 
-Zadání simuluje zamykání skříněk v šatně (např. v bazénu) pomocí
-elektronických zámků a klíčů. Platí:
+1.  Each locker can be locked by every (chip )key.
+2.  If a locker is locked by a key, this key cannot lock another locker until the original locker is unlocked.
+3.  A locker can be unlocked only by the key which has locked it.
+4.  Information about which locker is locked by which key is saved in locker and key, in other words the key remembers which locker it locked and vice versa. There is not central administration.
 
-1.  Libovolným (čipovým) klíčem se dá zamnout libovolná skříňka.
-2.  Jakmile klíč zamkne skříňku, nemůže zamknout žádnou další až do
-    odemčení.
-3.  Skříňku lze odemknout jen klíčem, který ji zamknul.
-4.  Informace o tom, která skříňka je zamčena kterým klíčem, je uložena
-    v zámku skříňky a v klíči, tj. klíč si pamatuje zámek, který zamkl a
-    naopak. Není zde žádná centrální správa.
+**Task:**
 
-**Zadání:**
+-   Add methods for locking and unlocking into `ChipLocker` class.
+The `void lock(ChipKey key)` is defined by following documentation:
 
--   Do třídy `ChipLocker` doplňte metody pro odemykání a zamykání.\
-     Metoda `void lock(ChipKey key)` je definována následující
-    dokumentací:
 
         /**
          * Attempts to lock the locker by given key.
@@ -34,8 +27,7 @@ elektronických zámků a klíčů. Platí:
          */
 
 
-    Metoda `void unlock(ChipKey key)` je definována následujícím
-    dokumentací:
+   The `void unlock(ChipKey key)` is defined by following documentation:
 
         /**
          * Attempts to unlock the locker by given key.
@@ -46,28 +38,15 @@ elektronických zámků a klíčů. Platí:
          *     is locked by another key
          */
 
--   Vytvořte **hlídanou** výjimku `LockerException`. Výjimka bude mít
-    dva konstruktory: bezparametrický a s textovým popisem chyby.
--   Vytvořte třídu `ChangeRoom` představující šatnu. Třída bude
-    implementována **pomocí polí** (nikoliv kolekcí!) a bude mít
-    následující vlastnosti:
-    -   Počet skříněk je dán jako parametr konstruktoru. Konstruktor
-        vytvoří a uloží příslušný počet zámků (skříněk) a klíčů.
-    -   Třída bude mít metody
-        `boolean tryToLock(int keyId, int lockerId)` a
-        `boolean tryToUnlock(int keyId, int lockerId)`, kde `keyId` a
-        `lockerId` jsou pořadová čísla klíčů/zámků (indexováno od nuly).
-        Metody vezmou příslušný klíč a zámek a pokusí se
-        zamknout/odemknout. Pokud operace uspěje, vrátí true, pokud
-        neuspěje vrítí false. Metody NEBUDOU vyhazovat výjimku
-        `LockerException`. Naopak, musí ji odchytit a "převést" na
-        návratovou hodnotu true/false. \
-         Pozn: Pokud je číslo klíče nebo zámku neplatné (mimo rozsah
-        pole), vyhodí se výjimka `IndexOutOfBoundsException`, tj.
-        nemusíte to ošetřovat, systém ji vyhodí sám.
+-   Create **checked** `LockerException` exception. This exception will have two constructors: one without parameters and one with textual error description.
+-   Use `ChangeRoom` class which represents the changing room. This class will be implemented by **arrays** (not collections!) and will have following characteristics:
+    -   Number of lockers is given by constructor parameter. Constructor creates and saves given numbers of locks (lockers) and keys.
+    -   This class will have 
+        `boolean tryToLock(int keyId, int lockerId)` ane
+        `boolean tryToUnlock(int keyId, int lockerId)` methods, where `KeyID` and `lockerID` are serial numbers of keys\locks (indexed from zero). Methods take given key and try to lock\unlock the locker. If they are successful, they return true, otherwise they return false. These methods do not throw `LockerException`. They must catch it and transform it into correct return value true\false.
+NOTE: If the key or lock number is not valid (out of array range), the `IndexOutOfBoundsException` exception is thrown and you do not need to handle it, system will throw it automatically.
 
-Třída `Demo` slouží pro vaši kontrolu funkčnosti kódu a obsahuje také
-logiku volání metod. Správný výstup by měl vypadat následovně:
+`Demo` class is for checking code functionality and also contains logic of method calling. The right output should look like this:
 
     Locking the locker 0 with key 9: success
     Locking the locker 1 with key 5: success
